@@ -7,11 +7,14 @@
       content="Get instant Credit Reports from various Credit Bureaus. Know your Credit, improve your Credit Health"
     />
     <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="stylesheet" href="/admin.css" />
     <link rel="stylesheet" href="/style.css" />
+
     <script
       src="https://kit.fontawesome.com/66aa7c98b3.js"
       crossorigin="anonymous"
     ></script>
+    <script type="module" src="/main.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
       Nutun Credit Health | Get Your Credit Report, Credit Score Check | a
@@ -19,37 +22,31 @@
     </title>
   </head>
   <body>
-    <main class="w-full">
+    <div class="transition transition-1 is-active">loading...</div>
+    <main class="w-full page">
       <header class="form-page nav-header bg-primary w-full">
         <div class="container">
           <div class="nav-primary">
-            <a href="/">
+            <a href="index.html">
               <img src="/images/nutun-credit-health.svg" alt=""
             /></a>
-            <button
-              class="mobile-toggle"
-              aria-controls="nav"
-              aria-expanded="false"
-            >
-              <img
-                class="menu_icon"
-                src="/images/menu_icon.png"
-                alt=""
-                aria-hidden="true"
-              />
-              <img
-                class="close_icon"
-                src="/images/close_icon.png"
-                alt=""
-                aria-hidden="true"
-              />
-              <span class="hidden">Menu</span>
-            </button>
+            <div class="menu-icon">
+              <button class="mobile-toggle">
+                <div class="item">
+                  <div class="burger four">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
+                <span class="hidden">Menu</span>
+              </button>
+            </div>
             <nav class="navbar" id="nav">
               <div class="nav-links">
                 <ul role="list">
-                  <li><a href="/">Home</a></li>
-                  <li><a href="#about">About</a></li>
+                  <li><a href="index.html">Home</a></li>
+                  <li><a href="index.html">About</a></li>
                   <li><a href="contact.html">Contact</a></li>
                   <li>
                     <div class="btn-primary nav-btn get-started">
@@ -69,7 +66,7 @@
               <div class="form-step active" data-step>
                 <h2 class="my-1">Verification</h2>
                 <div class="form-group my-2">
-                  <label for="id"><p>Please enter your ID Number</p></label>
+                  <label for="id">Please enter your ID Number</label>
                   <input type="id" name="id" id="id" />
                 </div>
                 <div class="btn-primary btn-dark" data-next>Next</div>
@@ -78,20 +75,16 @@
                 <h2 class="my-1">Get started</h2>
                 <div class="even-col">
                   <div class="form-group">
-                    <label for="name"><p>Please enter your name</p></label>
+                    <label for="name">Please enter your name</label>
                     <input type="name" name="name" id="name" />
                   </div>
                   <div class="form-group">
-                    <label for="password"
-                      ><p>Please enter your password</p></label
-                    >
+                    <label for="password">Please enter your password</label>
                     <input type="password" name="password" id="password" />
                   </div>
                 </div>
                 <div class="form-group my-2">
-                  <label for="email"
-                    ><p>Please enter your email Number</p></label
-                  >
+                  <label for="email">Please enter your email Number</label>
                   <input type="email" name="email" id="email" />
                 </div>
                 <div class="even-col submit">
@@ -103,7 +96,16 @@
           </section>
         </div>
       </header>
+      <aside class="aside">
+        <ul class="aside_list" role="list">
+          <li class="aside_list-item"><a href="index.html">Home</a></li>
+          <li class="aside_list-item"><a href="index.html">About</a></li>
+          <li class="aside_list-item"><a href="contact.html">Contact</a></li>
+          <li class="">
+            <div class="btn-primary nav-btn get-started">Get Started</div>
+          </li>
+        </ul>
+      </aside>
     </main>
-    <script type="module" src="/main.js" defer></script>
   </body>
 </html>

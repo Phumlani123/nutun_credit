@@ -7,11 +7,14 @@
       content="Get instant Credit Reports from various Credit Bureaus. Know your Credit, improve your Credit Health"
     />
     <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="stylesheet" href="/admin.css" />
     <link rel="stylesheet" href="/style.css" />
+
     <script
       src="https://kit.fontawesome.com/66aa7c98b3.js"
       crossorigin="anonymous"
     ></script>
+    <script type="module" src="/main.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
       Nutun Credit Health | Get Your Credit Report, Credit Score Check | a
@@ -19,37 +22,33 @@
     </title>
   </head>
   <body>
-    <main class="w-full">
-      <header class="nav-header bg-primary w-full">
+    <div class="transition transition-1 is-active">
+      <span class="loading-text">loading...</span>
+    </div>
+    <main class="w-full page">
+      <header class="nav-header bg-primary main-blob w-full">
         <div class="container">
           <div class="nav-primary">
             <a href="/">
               <img src="/images/nutun-credit-health.svg" alt=""
             /></a>
-            <button
-              class="mobile-toggle"
-              aria-controls="nav"
-              aria-expanded="false"
-            >
-              <img
-                class="menu_icon"
-                src="/images/menu_icon.png"
-                alt=""
-                aria-hidden="true"
-              />
-              <img
-                class="close_icon"
-                src="/images/close_icon.png"
-                alt=""
-                aria-hidden="true"
-              />
-              <span class="hidden">Menu</span>
-            </button>
-            <nav class="navbar" id="nav">
+            <div class="menu-icon">
+              <button class="mobile-toggle">
+                <div class="item">
+                  <div class="burger four">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
+                <span class="hidden">Menu</span>
+              </button>
+            </div>
+            <nav class="navbar">
               <div class="nav-links">
                 <ul role="list">
-                  <li><a href="/">Home</a></li>
-                  <li><a href="#about">About</a></li>
+                  <li><a href="index.html">Home</a></li>
+                  <li><a href="index.html">About</a></li>
                   <li><a href="contact.html">Contact</a></li>
                   <li>
                     <div class="btn-primary nav-btn get-started">
@@ -63,12 +62,14 @@
           <section class="hero">
             <div class="even-col">
               <div class="hero-text">
-                <h1>Quick, easy, credit check</h1>
+                <div class="section_slide">
+                  <h1>Quick, easy, credit check</h1>
+                </div>
                 <p class="my-3">
                   Get instant Credit Reports from various Credit Bureaus. Know
                   your Credit, improve your Credit Health
                 </p>
-                <div class="btn-primary">Get Started</div>
+                <div class="btn-primary get-started">Get Started</div>
               </div>
               <div class="hero-image">
                 <img src="/images/main-header.svg" alt="hero-image" />
@@ -91,7 +92,17 @@
           </section>
         </div>
       </header>
-      <section class="text-center section-padding">
+      <aside class="aside">
+        <ul class="aside_list" role="list">
+          <li class="aside_list-item"><a href="index.html">Home</a></li>
+          <li class="aside_list-item"><a href="index.html">About</a></li>
+          <li class="aside_list-item"><a href="contact.html">Contact</a></li>
+          <li class="">
+            <div class="btn-primary nav-btn get-started">Get Started</div>
+          </li>
+        </ul>
+      </aside>
+      <section class="text-center section-padding" id="about">
         <div class="solutions container">
           <div class="lead-padding">
             <p>Our benefits</p>
@@ -143,7 +154,7 @@
           </div>
         </div>
       </section>
-      <section class="bg-primary section-padding">
+      <section class="bg-primary bg-items section-padding">
         <div class="benefits">
           <div class="lead-padding">
             <h2 class="my-2">How can we help you?</h2>
@@ -155,87 +166,50 @@
             </p>
           </div>
           <div class="benefits-section">
-            <div class="benefit">
+            <div class="benefit element_slide">
               <div class="benefit-image">
                 <img
                   src="https://picsum.photos/1200/1200?random=1"
                   alt="benefit"
                 />
               </div>
-              <div class="benefit-text">
+              <div class="benefit-text section_slide">
                 <h3>Get Your Credit Report</h3>
                 <p>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                  voluptas, quod, quia, voluptates quae voluptatibus quibusdam
-                  voluptatum quidem quos quas nesciunt. Quisquam, quae. Quisquam
+                  voluptas, quod, quia, voluptates quae Quisquam, quae. Quisquam
                   quae, quod quibusdam quia voluptas.
                 </p>
               </div>
             </div>
-            <div class="benefit">
+            <div class="benefit element_slide">
               <div class="benefit-image">
                 <img
                   src="https://picsum.photos/1200/1200?random=2"
                   alt="benefit"
                 />
               </div>
-              <div class="benefit-text">
+              <div class="benefit-text section_slide">
                 <h3>Get Your Credit Report</h3>
                 <p>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                  voluptas, quod, quia, voluptates quae voluptatibus quibusdam
-                  voluptatum quidem quos quas nesciunt. Quisquam, quae. Quisquam
+                  voluptas, quod, quia, voluptates quae Quisquam, quae. Quisquam
                   quae, quod quibusdam quia voluptas.
                 </p>
               </div>
             </div>
-            <div class="benefit">
+            <div class="benefit element_slide">
               <div class="benefit-image">
                 <img
                   src="https://picsum.photos/1200/1200?random=3"
                   alt="benefit"
                 />
               </div>
-              <div class="benefit-text">
+              <div class="benefit-text section_slide">
                 <h3>Get Your Credit Report</h3>
                 <p>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                  voluptas, quod, quia, voluptates quae voluptatibus quibusdam
-                  voluptatum quidem quos quas nesciunt. Quisquam, quae. Quisquam
-                  quae, quod quibusdam quia voluptas.
-                </p>
-              </div>
-            </div>
-            <div class="benefit">
-              <div class="benefit-image">
-                <img
-                  src="https://picsum.photos/1200/1200?random=4"
-                  alt="benefit"
-                />
-              </div>
-              <div class="benefit-text">
-                <h3>Get Your Credit Report</h3>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                  voluptas, quod, quia, voluptates quae voluptatibus quibusdam
-                  voluptatum quidem quos quas nesciunt. Quisquam, quae. Quisquam
-                  quae, quod quibusdam quia voluptas.
-                </p>
-              </div>
-            </div>
-            <div class="benefit">
-              <div class="benefit-image">
-                <img
-                  src="https://picsum.photos/1200/1200?random=5"
-                  alt="benefit"
-                />
-              </div>
-              <div class="benefit-text">
-                <h3>Get Your Credit Report</h3>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                  voluptas, quod, quia, voluptates quae voluptatibus quibusdam
-                  voluptatum quidem quos quas nesciunt. Quisquam, quae. Quisquam
+                  voluptas, quod, quia, voluptates quae Quisquam, quae. Quisquam
                   quae, quod quibusdam quia voluptas.
                 </p>
               </div>
@@ -262,7 +236,7 @@
               </div>
               <div class="team-text">
                 <h3 class="my-1">Mr CEO</h3>
-                <p>quod quibusdam quia voluptas.</p>
+                <p>quod quibusdam quia voluptas. quia, voluptates quae</p>
               </div>
             </div>
             <div class="team-member">
@@ -271,7 +245,7 @@
               </div>
               <div class="team-text">
                 <h3 class="my-1">Tech Lead</h3>
-                <p>quod quibusdam quia voluptas.</p>
+                <p>quod quibusdam quia voluptas. quia, voluptates quae</p>
               </div>
             </div>
             <div class="team-member">
@@ -280,7 +254,7 @@
               </div>
               <div class="team-text">
                 <h3 class="my-1">Design Lead</h3>
-                <p>quod quibusdam quia voluptas.</p>
+                <p>quod quibusdam quia voluptas. quia, voluptates quae</p>
               </div>
             </div>
           </div>
@@ -298,7 +272,7 @@
         </div>
       </section>
       <footer>
-        <div class="footer footer-col container">
+        <div class="footer footer-col container footer-blob">
           <div class="footer-text">
             <h2>Nutun</h2>
             <p class="my-1">
@@ -342,6 +316,5 @@
         </div>
       </footer>
     </main>
-    <script type="module" src="/main.js"></script>
   </body>
 </html>

@@ -1,104 +1,170 @@
-// import './style.css'
-// import javascriptLogo from './javascript.svg'
-// import { setupCounter } from './counter.js'
-
-// document.querySelector('#app').innerHTML = `
-//   <div>
-//     <a href="https://vitejs.dev" target="_blank">
-//       <img src="/vite.svg" class="logo" alt="Vite logo" />
-//     </a>
-//     <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-//       <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-//     </a>
-//     <h1>Hello Vite!</h1>
-//     <div class="card">
-//       <button id="counter" type="button"></button>
-//     </div>
-//     <p class="read-the-docs">
-//       Click on the Vite logo to learn more
-//     </p>
-//   </div>
-// `
-
-// setupCounter(document.querySelector('#counter'))
-
 "use strict";
 
-const toggleNav = document.querySelector(".mobile-toggle");
-const nav = document.querySelector(".navbar");
-const signIn = document.querySelector(".get-started");
-const multiForm = document.querySelector("[data-multi-step]");
-const dashboardCard = document.querySelector(".dashboard-card");
+window.onload = () => {
+  const toggleButton = document.querySelector(".mobile-toggle");
+  const burger = document.querySelector(".burger");
+  const signInBtns = document.querySelectorAll(".get-started");
+  const multiForm = document.querySelector("[data-multi-step]");
 
-if (dashboardCard) {
-  dashboardCard.addEventListener("click", () => {
-    dashboardCard.classList.toggle("animate");
-  });
-}
-
-toggleNav.addEventListener("click", () => {
-  nav.hasAttribute("data-visible")
-    ? nav.setAttribute("aria-expanded", false)
-    : nav.setAttribute("aria-expanded", true);
-  nav.toggleAttribute("data-visible");
-});
-
-signIn
-  ? signIn.addEventListener("click", () => {
-      location.href = "signin.html";
-    })
-  : null;
-
-if (multiForm) {
-  const formSteps = [...multiForm.querySelectorAll("[data-step]")];
-  const nextBtn = document.querySelector("[data-next]");
-  const prevBtn = document.querySelector("[data-prev]");
-  const submitBtn = document.querySelector("[data-submit]");
-
-  let currentStep = formSteps.findIndex((step) => {
-    return step.classList.contains("active");
+  toggleButton.addEventListener("click", () => {
+    burger.classList.toggle("activated");
   });
 
-  if (currentStep < 0) {
-    currentStep = 0;
-    formSteps[currentStep].classList.add("active");
-  }
+  signInBtns
+    ? signInBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          location.href = "signin.html";
+        });
+      })
+    : null;
 
-  nextBtn.addEventListener("click", () => {
-    formSteps[currentStep].classList.remove("active");
-    currentStep++;
-    formSteps[currentStep].classList.add("active");
-  });
+  if (multiForm) {
+    const formSteps = [...multiForm.querySelectorAll("[data-step]")];
+    const nextBtn = document.querySelector("[data-next]");
+    const prevBtn = document.querySelector("[data-prev]");
+    const submitBtn = document.querySelector("[data-submit]");
 
-  prevBtn.addEventListener("click", () => {
-    formSteps[currentStep].classList.remove("active");
-    currentStep--;
-    formSteps[currentStep].classList.add("active");
-  });
+    let currentStep = formSteps.findIndex((step) => {
+      return step.classList.contains("active");
+    });
 
-  submitBtn.addEventListener("click", () => {
-    location.href = "admin.html";
-  });
-}
-
-const menuIcon = document.querySelector(".menu-icon");
-const aside = document.querySelector(".aside");
-const asideClose = document.querySelector(".aside_close-icon");
-
-if (menuIcon) {
-  function toggle(el, className) {
-    if (el.classList.contains(className)) {
-      el.classList.remove(className);
-    } else {
-      el.classList.add(className);
+    if (currentStep < 0) {
+      currentStep = 0;
+      formSteps[currentStep].classList.add("active");
     }
+
+    nextBtn.addEventListener("click", () => {
+      formSteps[currentStep].classList.remove("active");
+      currentStep++;
+      formSteps[currentStep].classList.add("active");
+    });
+
+    prevBtn.addEventListener("click", () => {
+      formSteps[currentStep].classList.remove("active");
+      currentStep--;
+      formSteps[currentStep].classList.add("active");
+    });
+
+    submitBtn.addEventListener("click", () => {
+      location.href = "admin.html";
+    });
   }
 
-  menuIcon.addEventListener("click", function () {
-    toggle(aside, "active");
+  const menuIcon = document.querySelector(".menu-icon");
+  const aside = document.querySelector(".aside");
+
+  if (menuIcon) {
+    function toggle(el, className) {
+      if (el.classList.contains(className)) {
+        el.classList.remove(className);
+      } else {
+        el.classList.add(className);
+      }
+    }
+
+    menuIcon.addEventListener("click", function () {
+      toggle(aside, "active");
+    });
+  }
+
+  const transition_el = document.querySelector(".transition");
+  const anchors = document.querySelectorAll("a");
+
+  console.log({ anchors });
+
+  setTimeout(() => {
+    transition_el.classList.remove("is-active");
+  }, 500);
+
+  anchors &&
+    anchors.forEach((anchor, i) => {
+      console.log({ anchor });
+      anchor.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        let target = e.target.href;
+        transition_el.classList.add("is-active");
+        console.log({ target });
+        setTimeout(() => {
+          window.location.href = target;
+        }, 500);
+      });
+    });
+
+  const tiltSettings = {
+    max: 25, // max tilt rotation (degrees (deg))
+    perspective: 1000, // transform perspective, the lower the more extreme the tilt gets (pixels (px))
+    scale: 1.1, // transform scale - 2 = 200%, 1.5 = 150%, etc..
+    speed: 2000, // speed (transition-duration) of the enter/exit transition (milliseconds (ms))
+    easing: "cubic-bezier(.03,.98,.52,.99)", // easing (transition-timing-function) of the enter/exit transition
+  };
+
+  const teamCards = document.querySelectorAll(".team-member");
+
+  teamCards.forEach((teamCard) => {
+    teamCard.addEventListener("mouseenter", cardMouseEnter);
+    teamCard.addEventListener("mousemove", cardMouseMove);
+    teamCard.addEventListener("mouseleave", cardMouseLeave);
   });
 
-  asideClose.addEventListener("click", function () {
-    toggle(aside, "active");
-  });
-}
+  function cardMouseEnter(event) {
+    setTransition(event);
+  }
+
+  function cardMouseMove(event) {
+    const card = event.currentTarget;
+    const cardWidth = card.offsetWidth;
+    const cardHeight = card.offsetHeight;
+    const centerX = card.offsetLeft + cardWidth / 2;
+    const centerY = card.offsetTop + cardHeight / 2;
+    const mouseX = event.clientX - centerX;
+    const mouseY = event.clientY - centerY;
+    const rotateXUncapped = (+1 * tiltSettings.max * mouseX) / (cardHeight / 2);
+    const rotateYUncapped = (-1 * tiltSettings.max * mouseX) / (cardWidth / 2);
+    const rotateX =
+      rotateXUncapped < -tiltSettings.max
+        ? -tiltSettings.max
+        : rotateXUncapped > tiltSettings.max
+        ? tiltSettings.max
+        : rotateXUncapped;
+    const rotateY =
+      rotateYUncapped < -tiltSettings.max
+        ? -tiltSettings.max
+        : rotateYUncapped > tiltSettings.max
+        ? tiltSettings.max
+        : rotateYUncapped;
+
+    card.style.transform = `perspective(${tiltSettings.perspective}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) 
+                              scale3d(${tiltSettings.scale}, ${tiltSettings.scale}, ${tiltSettings.scale})`;
+  }
+
+  function cardMouseLeave(event) {
+    event.currentTarget.style.transform = `perspective(${tiltSettings.perspective}px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+    setTransition(event);
+  }
+
+  function setTransition(event) {
+    const card = event.currentTarget;
+    clearTimeout(card.transitionTimeoutId);
+    card.style.transition = `transform ${tiltSettings.speed}ms ${tiltSettings.easing}`;
+    card.transitionTimeoutId = setTimeout(() => {
+      card.style.transition = "";
+    }, tiltSettings.speed);
+  }
+};
+
+const nav = document.querySelector(".nav-primary");
+
+const scrollFunction = () => {
+  const headerHeight = document.querySelector(".nav-header").offsetHeight;
+  if (
+    document.body.scrollTop > headerHeight + 80 ||
+    document.documentElement.scrollTop > headerHeight + 80
+  ) {
+    nav.classList.add("sticky");
+  } else {
+    nav.classList.remove("sticky");
+  }
+};
+
+window.onscroll = () => nav && scrollFunction();
