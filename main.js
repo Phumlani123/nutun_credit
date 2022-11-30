@@ -18,11 +18,53 @@ window.onload = () => {
       })
     : null;
 
+  // multiForm functionality
+
   if (multiForm) {
+    const form = document.forms.RegForm;
     const formSteps = [...multiForm.querySelectorAll("[data-step]")];
     const nextBtn = document.querySelector("[data-next]");
     const prevBtn = document.querySelector("[data-prev]");
     const submitBtn = document.querySelector("[data-submit]");
+    const idNumber = form.id_num;
+    const name = form.name;
+    const email = form.email;
+    const verifyId = form.verify_id;
+
+    const idValidation = () => {
+      if (idNumber.value == "" || idNumber.value.length < 10) {
+        idNumber.closest(".form-group").classList.add("error");
+        return false;
+      } else {
+        idNumber.closest(".form-group").classList.remove("error");
+      }
+      return true;
+    };
+
+    const validation = () => {
+      var regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g; //Javascript reGex for Email Validation.
+
+      if (name.value == "") {
+        name.closest(".form-group").classList.add("error");
+        return false;
+      } else {
+        name.closest(".form-group").classList.remove("error");
+      }
+      if (email.value == "" || !regEmail.test(email.value)) {
+        email.closest(".form-group").classList.add("error");
+        return false;
+      } else {
+        email.closest(".form-group").classList.remove("error");
+      }
+
+      if (verifyId.value !== idNumber.value) {
+        verifyId.closest(".form-group").classList.add("error");
+        return false;
+      } else {
+        verifyId.closest(".form-group").classList.remove("error");
+      }
+      return true;
+    };
 
     let currentStep = formSteps.findIndex((step) => {
       return step.classList.contains("active");
@@ -34,9 +76,11 @@ window.onload = () => {
     }
 
     nextBtn.addEventListener("click", () => {
-      formSteps[currentStep].classList.remove("active");
-      currentStep++;
-      formSteps[currentStep].classList.add("active");
+      if (idValidation()) {
+        formSteps[currentStep].classList.remove("active");
+        currentStep++;
+        formSteps[currentStep].classList.add("active");
+      }
     });
 
     prevBtn.addEventListener("click", () => {
@@ -46,9 +90,13 @@ window.onload = () => {
     });
 
     submitBtn.addEventListener("click", () => {
-      location.href = "admin.html";
+      if (validation()) {
+        location.href = "admin.html";
+      }
     });
   }
+
+  // Nav function on mobile
 
   const menuIcon = document.querySelector(".menu-icon");
   const aside = document.querySelector(".aside");
@@ -67,10 +115,10 @@ window.onload = () => {
     });
   }
 
+  // Page load function
+
   const transition_el = document.querySelector(".transition");
   const anchors = document.querySelectorAll("a");
-
-  console.log({ anchors });
 
   setTimeout(() => {
     transition_el.classList.remove("is-active");
@@ -78,18 +126,18 @@ window.onload = () => {
 
   anchors &&
     anchors.forEach((anchor, i) => {
-      console.log({ anchor });
       anchor.addEventListener("click", (e) => {
         e.preventDefault();
 
         let target = e.target.href;
         transition_el.classList.add("is-active");
-        console.log({ target });
         setTimeout(() => {
           window.location.href = target;
         }, 500);
       });
     });
+
+  // Tilt effect
 
   const tiltSettings = {
     max: 25, // max tilt rotation (degrees (deg))
@@ -153,13 +201,15 @@ window.onload = () => {
   }
 };
 
+// Scroll function
+
 const nav = document.querySelector(".nav-primary");
 
 const scrollFunction = () => {
   const headerHeight = document.querySelector(".nav-header").offsetHeight;
   if (
-    document.body.scrollTop > headerHeight + 80 ||
-    document.documentElement.scrollTop > headerHeight + 80
+    document.body.scrollTop > headerHeight - 120 ||
+    document.documentElement.scrollTop > headerHeight - 120
   ) {
     nav.classList.add("sticky");
   } else {

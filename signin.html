@@ -60,14 +60,15 @@
           <section class="section-padding form-section">
             <div class="form-section-heading">
               <h1>Login</h1>
-              <p>Get instant Credit Reports from various</p>
+              <p>Get instant Credit Reports from various lorem</p>
             </div>
-            <form clas="form" data-multi-step>
+            <form name="RegForm" class="form" data-multi-step>
               <div class="form-step active" data-step>
                 <h2 class="my-1">Verification</h2>
                 <div class="form-group my-2">
                   <label for="id">Please enter your ID Number</label>
-                  <input type="id" name="id" id="id" />
+                  <input type="id" name="id_num" id="id_num" />
+                  <span class="msg">Number not valid</span>
                 </div>
                 <div class="btn-primary btn-dark" data-next>Next</div>
               </div>
@@ -77,15 +78,18 @@
                   <div class="form-group">
                     <label for="name">Please enter your name</label>
                     <input type="name" name="name" id="name" />
+                    <span class="msg">Name cannot be empty</span>
                   </div>
                   <div class="form-group">
-                    <label for="password">Please enter your password</label>
-                    <input type="password" name="password" id="password" />
+                    <label for="email">Please enter your email</label>
+                    <input type="email" name="email" id="email" />
+                    <span class="msg">Please enter a valid email</span>
                   </div>
                 </div>
                 <div class="form-group my-2">
-                  <label for="email">Please enter your email Number</label>
-                  <input type="email" name="email" id="email" />
+                  <label for="verify_id">Please enter your ID Number</label>
+                  <input type="verify_id" name="verify_id" id="verify_id" />
+                  <span class="msg">ID does not match</span>
                 </div>
                 <div class="even-col submit">
                   <div class="btn-primary btn-dark" data-prev>Previous</div>
